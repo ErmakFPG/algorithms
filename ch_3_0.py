@@ -6,7 +6,7 @@ class Cell:
 
 class LinkedList:
     def __init__(self):
-        self.top = Cell(None)  # limiter
+        self.top = Cell()  # limiter
 
     def add_at_beginning(self, new_cell):
         new_cell.next = self.top.next
