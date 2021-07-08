@@ -22,9 +22,6 @@ class CustomList:
         else:
             raise IndexError
 
-    def _set_value(self, position, value):
-        self.collection.set_value(position, value)
-
     def set_capacity(self, new_capacity):
         if new_capacity > self.capacity:
             new_collection = Array(new_capacity)
@@ -49,27 +46,49 @@ class CustomList:
 
     def remove_value(self, position):
         for i in range(position, self.size):
-            self.collection.set_value(position, self.collection.get_value(position + 1))
+            self.collection.set_value(i, self.collection.get_value(i + 1))
+        self.size -= 1
+        if self.capacity > 5 * self.size:
+            self.set_capacity(int(self.capacity / 2))
+
+    def set_value(self, position, value):
+        if position <= self.capacity:
+            self.set_capacity(self.capacity + 1)
+        else:
+            self.set_capacity(position + 1)
+        for i in range(self.size, position, -1):
+            self.collection.set_value(i, self.collection.get_value(i - 1))
+        self.collection.set_value(position, value)
 
 
-array = CustomList(5)
+array = CustomList(3)
 array.add_value(10)
 array.add_value(20)
-array.add_value(30)
-print(f'size: {array.get_size()}')
-print(f'capacity: {array.get_capacity()}')
 array.show_collection()
 
 print('--------------------')
 
+array.add_value(30)
 array.add_value(40)
-array.add_value(50)
-array.add_value(60)
-print(f'size: {array.get_size()}')
-print(f'capacity: {array.get_capacity()}')
+
 array.show_collection()
 
 print('--------------------')
 
 array.remove_value(1)
+array.show_collection()
+
+print('--------------------')
+
+array.set_capacity(15)
+array.show_collection()
+
+print('--------------------')
+
+array.remove_value(1)
+array.show_collection()
+
+print('--------------------')
+
+array.set_value(11, 20)
 array.show_collection()
