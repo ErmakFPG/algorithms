@@ -9,12 +9,15 @@ class Array:
     def show_array(self):
         print(self._collection)
 
-    def set_value(self, position, value):
-        if position < 0 or position >= self._size:
+    @staticmethod
+    def check_position(position, size):
+        if position < 0 or position >= size:
             raise IndexError
+
+    def set_value(self, position, value):
+        self.check_position(position, self._size)
         self._collection[position] = value
 
     def get_value(self, position):
-        if position < 0 or position >= self._size:
-            raise IndexError
+        self.check_position(position, self._size)
         return self._collection[position]
