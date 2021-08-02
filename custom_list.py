@@ -16,19 +16,24 @@ class CustomList:
     def get_capacity(self):
         return self._capacity
 
-    def check_position(self, position):
-        if position < 0 or position >= self._size:
+    def _check_position(self, position, check_type):
+        limiter = None
+        if check_type == 'get':
+            limiter = self._size
+        elif check_type == 'set':
+            limiter = self._capacity
+        if position < 0 or position >= limiter:
             raise IndexError
 
     def get_value(self, position):
-        self.check_position(position)
+        self._check_position(position, check_type='get')
         return self._collection.get_value(position)
 
     def set_value(self, position, value):
-        self.check_position(position)
+        self._check_position(position, check_type='set')
         self._collection.set_value(position, value)
 
-    def copy_values_in_new_collection(self, new_capacity):
+    def _copy_values_in_new_collection(self, new_capacity):
         new_collection = Array(new_capacity)
         for position in range(self._size):
             new_collection.set_value(position, self._collection.get_value(position))
@@ -40,8 +45,7 @@ class CustomList:
             return
         if new_capacity < self._size:
             raise ValueError
-        else:
-            self.copy_values_in_new_collection(new_capacity)
+        self._copy_values_in_new_collection(new_capacity)
 
     def add_value(self, value):
         if self._capacity == self._size:
@@ -50,7 +54,7 @@ class CustomList:
         self._size += 1
 
     def remove_value(self, position):
-        self.check_position(position)
+        self._check_position(position, check_type='get')
         delete_value = self._collection.get_value(position)
         for i in range(position, self._size - 1):
             self._collection.set_value(i, self._collection.get_value(i + 1))

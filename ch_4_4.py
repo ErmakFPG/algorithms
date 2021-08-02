@@ -1,14 +1,18 @@
 def insert_item(array, value, position):
-    if position > len(array):
+    length_array = array.get_size()
+    if position > length_array - 1:
         raise IndexError
-    return array[:position] + [value] + array[position:]
+    array.set_capacity(array.get_capacity() + 1)
+    for i in range(length_array - 1, position - 1, -1):
+        array.set_value(i + 1, array.get_value(i))
+    array.set_value(position, value)
 
 
-def remove_item(array, position):
-    if position > len(array):
+def delete_item(array, position):
+    length_array = array.get_size()
+    if position > length_array - 1:
         raise IndexError
-    return array[:position] + array[position + 1:]
-
-
-print(insert_item([1, 2, 3, 4], 5, 4))
-print(remove_item([1, 2, 3, 4, 5], 4))
+    for i in range(position, length_array - 1):
+        array.set_value(i, array.get_value(i + 1))
+    array.remove_value(length_array - 1)
+    array.set_capacity(array.get_capacity() - 1)
