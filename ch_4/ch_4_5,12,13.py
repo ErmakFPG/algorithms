@@ -6,7 +6,7 @@ class TriangularArray:
         self._dimension = dimension
         self._one_dimensional_array_size = int((dimension ** 2 + dimension) / 2)
         self._collection = CustomList(self._one_dimensional_array_size)
-        for i in range(self._one_dimensional_array_size):
+        for index in range(self._one_dimensional_array_size):
             self._collection.add_value(None)
 
     def show_collection(self):
