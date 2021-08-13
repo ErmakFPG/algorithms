@@ -21,12 +21,20 @@ class Stack:
     def show(self):
         self._collection.show_collection()
 
+    @staticmethod
+    def reverse_array(array):
+        array_size = array.get_size()
+        stack = Stack(array_size)
+        for i in range(array_size):
+            stack.push(array.get_value(i))
+        for i in range(array_size):
+            array.set_value(i, stack.pop())
+
 
 if __name__ == '__main__':
-    sample = Stack(5)
-    sample.push(10)
-    sample.push(20)
-    sample.push(30)
-    sample.show()
-    print(sample.pop())
-    sample.show()
+    sample = CustomList(3)
+    sample.add_value(10)
+    sample.add_value(20)
+    sample.add_value(30)
+    Stack.reverse_array(sample)
+    sample.show_collection()
