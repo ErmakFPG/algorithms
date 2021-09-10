@@ -13,7 +13,7 @@ class Stack:
         self.top.next = new_cell
 
     def pop(self):
-        if self.top is None:
+        if self.top.next is None:
             raise IndexError
         result = self.top.next.value
         self.top.next = self.top.next.next
