@@ -26,7 +26,10 @@ class PriorityQueue:
                 top_priority = current_cell.next.priority
             current_cell = current_cell.next
 
+        delete_value = delete_after.next.value
         delete_after.next = delete_after.next.next
+
+        return delete_value
 
     def show(self):
         current_cell = self.top
