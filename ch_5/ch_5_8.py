@@ -23,7 +23,7 @@ class PriorityQueue:
         while current_cell.next:
             if current_cell.next.priority >= top_priority:
                 delete_after = current_cell
-                top_priority = delete_after.next.priority
+                top_priority = current_cell.next.priority
             current_cell = current_cell.next
 
         delete_after.next = delete_after.next.next
