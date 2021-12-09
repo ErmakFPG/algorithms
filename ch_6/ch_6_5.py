@@ -7,9 +7,9 @@ def bubble_sort(array):
         not_sorted = False
         for i in range(array.get_size() - 1):
             if array.get_value(i) > array.get_value(i + 1):
-                tamp = array.get_value(i)
+                temp = array.get_value(i)
                 array.set_value(i, array.get_value(i + 1))
-                array.set_value(i + 1, tamp)
+                array.set_value(i + 1, temp)
                 not_sorted = True
 
 
