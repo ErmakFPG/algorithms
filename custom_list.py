@@ -61,6 +61,10 @@ class CustomList:
             self.set_capacity(int(self._capacity / 2))
         return delete_value
 
+    def add_list(self, added_list):
+        for i in range(added_list.get_size()):
+            self.add_value(added_list.get_value(i))
+
 
 if __name__ == '__main__':
     sample = CustomList(0)
