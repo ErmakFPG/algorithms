@@ -33,13 +33,14 @@ def effective_bubble_sort(array):
                 reverse = False
 
 
-a = CustomList(6)
-a.add_value(4)
-a.add_value(1)
-a.add_value(3)
-a.add_value(7)
-a.add_value(5)
-a.add_value(2)
-a.show_collection()
-effective_bubble_sort(a)
-a.show_collection()
+if __name__ == '__main__':
+    a = CustomList(6)
+    a.add_value(4)
+    a.add_value(1)
+    a.add_value(3)
+    a.add_value(7)
+    a.add_value(5)
+    a.add_value(2)
+    a.show_collection()
+    effective_bubble_sort(a)
+    a.show_collection()
