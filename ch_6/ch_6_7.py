@@ -16,7 +16,7 @@ class PriorityQueue:
     def make_heap(self):
         if self.value_list.get_size() != self.priority_list.get_size():
             raise ValueError
-        for i in range(self.priority_list.get_size()):
+        for i in range(1, self.priority_list.get_size()):
             index = i
             while index:
                 parent = int((index - 1) / 2)
